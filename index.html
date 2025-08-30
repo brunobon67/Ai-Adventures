@@ -39,20 +39,77 @@
     </script>
     <style>
       @media print {
-        body, html {
-          background: #fff;
+        /* --- Aggressive Print Reset --- */
+        /* The goal is to override complex screen layouts (flex, grid, vh units) */
+        /* and create a simple, top-to-bottom document for printing. */
+
+        /* 1. Hide all non-essential UI elements */
+        header, footer, .no-print {
+            display: none !important;
         }
-        .no-print {
-          display: none !important;
+
+        /* 2. Reset the base document structure */
+        body, html, #root {
+            background: #fff !important;
+            height: auto !important;
+            overflow: visible !important;
+            min-height: unset !important;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
         }
+
+        /* 3. Force all app layout containers to behave like simple blocks */
+        .print-container-reset {
+            display: block !important;
+            min-height: unset !important;
+            height: auto !important;
+            position: static !important;
+            overflow: visible !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            backdrop-filter: none !important;
+        }
+        
+        /* 4. Ensure the content area is not constrained by screen-based max-widths */
+        main > .w-full {
+            max-width: 100% !important;
+        }
+
+        /* 5. Style the main printable area */
         #printable-area {
-          box-shadow: none !important;
-          border: none !important;
-          margin: 0;
-          padding: 0;
+            display: block !important;
+            width: 100% !important;
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-shadow: none !important;
         }
+
+        /* 6. Specifically neutralize the sticky day headers */
+        #printable-area .sticky {
+          position: static !important;
+          background: transparent !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+          margin: 0 !important;
+          border-bottom: 1px solid #e5e7eb; /* Add a separator */
+        }
+
+        /* 7. General cleanup for animations and transitions */
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+          box-shadow: none !important;
+        }
+        
+        /* 8. Control page breaks for readability */
         .page-break {
           page-break-before: always;
+        }
+        .break-inside-avoid {
+          page-break-inside: avoid;
         }
       }
       .bg-pattern {

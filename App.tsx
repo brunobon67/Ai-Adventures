@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ItineraryForm from './components/ItineraryForm';
 import ItineraryDisplay from './components/ItineraryDisplay';
@@ -58,7 +57,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen font-sans text-dark flex flex-col">
+    <div className="min-h-screen font-sans text-dark flex flex-col print-container-reset">
       <header className="py-6 no-print">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-center space-x-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
@@ -70,7 +69,7 @@ const App: React.FC = () => {
         </div>
       </header>
       
-      <main className="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow flex flex-col items-center">
+      <main className="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow flex flex-col items-center print-container-reset">
         <div className="w-full max-w-4xl">
           {showForm && <ItineraryForm onSubmit={handleFormSubmit} isLoading={isLoading} />}
           

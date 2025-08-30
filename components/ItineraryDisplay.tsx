@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Itinerary, Activity, DailyPlan } from '../types';
 import { CalendarIcon, ClipboardIcon, FoodIcon, LandmarkIcon, LeafIcon, LightbulbIcon, MapPinIcon, PrinterIcon, ShoppingBagIcon, SunIcon, TransitIcon, UnknownIcon, WandIcon } from './icons';
@@ -19,7 +18,7 @@ const getActivityIcon = (type: string) => {
 };
 
 const ActivityCard: React.FC<{ activity: Activity }> = ({ activity }) => (
-  <div className="flex space-x-4">
+  <div className="flex space-x-4 break-inside-avoid">
     <div className="flex flex-col items-center">
       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center shadow">
         {getActivityIcon(activity.type)}
@@ -106,7 +105,7 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ itinerary, onModify
         </div>
 
         {itinerary.dailyPlans.map((plan, index) => (
-          <div key={plan.day} className="animate-slide-in-up page-break" style={{ animationDelay: `${index * 100}ms` }}>
+          <div key={plan.day} className={`animate-slide-in-up ${index > 0 ? 'page-break' : ''}`} style={{ animationDelay: `${index * 100}ms` }}>
             <div className="sticky top-0 bg-white/80 backdrop-blur-sm z-10 py-4 -my-4 mb-4">
               <div className="flex items-center space-x-4">
                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary flex items-center justify-center shadow">
@@ -126,7 +125,7 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ itinerary, onModify
             </div>
             
             {plan.alternatives && plan.alternatives.length > 0 && (
-              <div className="mt-6 bg-orange-50 border-l-4 border-primary-hover p-4 rounded-r-lg">
+              <div className="mt-6 bg-orange-50 border-l-4 border-primary-hover p-4 rounded-r-lg break-inside-avoid">
                 <div className="flex">
                   <div className="flex-shrink-0">
                     <LightbulbIcon className="h-5 w-5 text-primary" />
