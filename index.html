@@ -14,6 +14,7 @@
               'primary': '#F97316', // Orange-500
               'primary-hover': '#FB923C', // Orange-400
               'secondary': '#0EA5E9', // Sky-500
+              'accent': '#8B5CF6', // Violet-500
               'light': '#F8FAFC', // Slate-50
               'dark': '#1E293B', // Slate-800
               'muted': '#64748B', // Slate-500
@@ -36,6 +37,32 @@
         }
       }
     </script>
+    <style>
+      @media print {
+        body, html {
+          background: #fff;
+        }
+        .no-print {
+          display: none !important;
+        }
+        #printable-area {
+          box-shadow: none !important;
+          border: none !important;
+          margin: 0;
+          padding: 0;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+      }
+      .bg-pattern {
+        background-color: #f8fafc;
+        background-image:  linear-gradient(135deg, #f9731610 25%, transparent 25%), linear-gradient(225deg, #f9731610 25%, transparent 25%), linear-gradient(45deg, #f9731610 25%, transparent 25%), linear-gradient(315deg, #f9731610 25%, #f8fafc 25%);
+        background-position:  40px 0, 40px 0, 0 0, 0 0;
+        background-size: 80px 80px;
+        background-repeat: repeat;
+      }
+    </style>
   <script type="importmap">
 {
   "imports": {
@@ -47,7 +74,7 @@
 }
 </script>
 </head>
-  <body class="bg-gradient-to-br from-light to-orange-100">
+  <body class="bg-pattern">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { ItineraryRequest, Pace, Budget } from '../types';
 import { INTERESTS_OPTIONS, PACE_OPTIONS, BUDGET_OPTIONS } from '../constants';
-import { CalendarIcon, MapPinIcon, PriceTagIcon, RocketLaunchIcon, RunningIcon } from './icons';
+import { CheckCircleIcon, HashtagIcon, MapPinIcon, PriceTagIcon, RocketLaunchIcon, RunningIcon } from './icons';
 
 interface ItineraryFormProps {
   onSubmit: (request: ItineraryRequest) => void;
@@ -21,11 +21,9 @@ const FormSection: React.FC<{ title: string, step: string, children: React.React
     </div>
 );
 
-
 const ItineraryForm: React.FC<ItineraryFormProps> = ({ onSubmit, isLoading }) => {
   const [city, setCity] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [numberOfDays, setNumberOfDays] = useState(3);
   const [interests, setInterests] = useState<string[]>([]);
   const [pace, setPace] = useState<Pace>(Pace.Moderate);
   const [budget, setBudget] = useState<Budget>(Budget.MidRange);
@@ -39,27 +37,38 @@ const ItineraryForm: React.FC<ItineraryFormProps> = ({ onSubmit, isLoading }) =>
     );
   };
 
+  const handleDaysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value)) {
+        setNumberOfDays(Math.max(1, Math.min(14, value)));
+    } else if (e.target.value === '') {
+        setNumberOfDays(1);
+    }
+  }
+
+  const handleDecrementDays = () => setNumberOfDays(prev => Math.max(1, prev - 1));
+  const handleIncrementDays = () => setNumberOfDays(prev => Math.min(14, prev + 1));
+
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (!city || !startDate || !endDate || interests.length === 0) {
+    if (!city || numberOfDays <= 0 || interests.length === 0) {
       setError('Please fill out all fields and select at least one interest.');
       return;
     }
-    if (new Date(startDate) > new Date(endDate)) {
-        setError('End date must be after the start date.');
-        return;
+     if (numberOfDays > 14) {
+      setError('For best results, please plan trips of 14 days or less.');
+      return;
     }
-    onSubmit({ city, startDate, endDate, interests, pace, budget });
+    onSubmit({ city, numberOfDays, interests, pace, budget });
   };
   
-  const today = new Date().toISOString().split('T')[0];
-
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-200/50 space-y-6 animate-fade-in">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-extrabold text-dark">Let's plan your next adventure!</h2>
-        <p className="text-muted mt-1">Tell us your preferences and we'll create a magical trip for you.</p>
+        <h2 className="text-3xl font-extrabold text-dark">Let's Plan Your Next Adventure!</h2>
+        <p className="text-muted mt-1">Tell us your travel preferences, and we'll craft the perfect trip.</p>
       </div>
       
       <FormSection title="Where are we going?" step="1">
@@ -69,17 +78,26 @@ const ItineraryForm: React.FC<ItineraryFormProps> = ({ onSubmit, isLoading }) =>
          </div>
       </FormSection>
 
-      <FormSection title="When is your adventure?" step="2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="relative">
-                <CalendarIcon className="h-5 w-5 text-muted absolute top-1/2 left-3 -translate-y-1/2"/>
-                <input type="date" aria-label="Start Date" id="start-date" value={startDate} min={today} onChange={e => setStartDate(e.target.value)} required className="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary" />
+      <FormSection title="How long is your adventure?" step="2">
+        <div className="flex items-center justify-center space-x-4">
+            <button type="button" onClick={handleDecrementDays} disabled={numberOfDays <= 1} className="w-10 h-10 rounded-full bg-light text-primary font-bold text-2xl flex items-center justify-center shadow-sm hover:bg-orange-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">-</button>
+            <div className="relative text-center">
+                <HashtagIcon className="h-5 w-5 text-muted absolute top-1/2 left-3 -translate-y-1/2" />
+                <input 
+                    type="number" 
+                    aria-label="Number of days" 
+                    id="days" 
+                    value={numberOfDays} 
+                    onChange={handleDaysChange} 
+                    min="1" 
+                    max="14" 
+                    required 
+                    className="w-28 text-center pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary font-semibold text-lg" 
+                />
             </div>
-            <div className="relative">
-                <CalendarIcon className="h-5 w-5 text-muted absolute top-1/2 left-3 -translate-y-1/2"/>
-                <input type="date" aria-label="End Date" id="end-date" value={endDate} min={startDate || today} onChange={e => setEndDate(e.target.value)} required className="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary" />
-            </div>
+             <button type="button" onClick={handleIncrementDays} disabled={numberOfDays >= 14} className="w-10 h-10 rounded-full bg-light text-primary font-bold text-2xl flex items-center justify-center shadow-sm hover:bg-orange-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">+</button>
         </div>
+         <p className="text-center text-muted text-xs mt-3">Enter a trip duration between 1 and 14 days.</p>
       </FormSection>
 
       <FormSection title="What's your vibe?" step="3">
@@ -103,10 +121,16 @@ const ItineraryForm: React.FC<ItineraryFormProps> = ({ onSubmit, isLoading }) =>
             <div>
               <label className="block text-sm font-medium text-muted mb-3 flex items-center"><RunningIcon className="h-4 w-4 mr-2"/>Pace</label>
               <div className="flex flex-col space-y-2">
-                {PACE_OPTIONS.map(option => (
-                  <button type="button" key={option.value} onClick={() => setPace(option.value)} className={`text-left p-3 border rounded-lg transition-all ${pace === option.value ? 'bg-primary/10 border-primary text-primary shadow' : 'bg-white hover:bg-gray-50 border-gray-300'}`}>
-                    <p className="font-semibold">{option.label}</p>
-                    <p className="text-xs">{option.description}</p>
+                {PACE_OPTIONS.map(({value, label, description, icon: Icon}) => (
+                  <button type="button" key={value} onClick={() => setPace(value)} className={`relative text-left p-3 border-2 rounded-lg transition-all ${pace === value ? 'border-primary bg-primary/5 shadow' : 'bg-white hover:bg-gray-50 border-gray-200'}`}>
+                    {pace === value && <div className="absolute top-1.5 right-1.5"><CheckCircleIcon className="h-5 w-5 text-primary" /></div>}
+                    <div className="flex items-center">
+                        <Icon className={`h-7 w-7 mr-3 ${pace === value ? 'text-primary' : 'text-muted'}`}/>
+                        <div>
+                            <p className="font-semibold">{label}</p>
+                            <p className="text-xs text-muted">{description}</p>
+                        </div>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -114,10 +138,16 @@ const ItineraryForm: React.FC<ItineraryFormProps> = ({ onSubmit, isLoading }) =>
              <div>
               <label className="block text-sm font-medium text-muted mb-3 flex items-center"><PriceTagIcon className="h-4 w-4 mr-2"/>Budget</label>
               <div className="flex flex-col space-y-2">
-                {BUDGET_OPTIONS.map(option => (
-                  <button type="button" key={option.value} onClick={() => setBudget(option.value)} className={`text-left p-3 border rounded-lg transition-all ${budget === option.value ? 'bg-primary/10 border-primary text-primary shadow' : 'bg-white hover:bg-gray-50 border-gray-300'}`}>
-                    <p className="font-semibold">{option.label}</p>
-                    <p className="text-xs">{option.description}</p>
+                {BUDGET_OPTIONS.map(({value, label, description, icon: Icon}) => (
+                  <button type="button" key={value} onClick={() => setBudget(value)} className={`relative text-left p-3 border-2 rounded-lg transition-all ${budget === value ? 'border-primary bg-primary/5 shadow' : 'bg-white hover:bg-gray-50 border-gray-200'}`}>
+                    {budget === value && <div className="absolute top-1.5 right-1.5"><CheckCircleIcon className="h-5 w-5 text-primary" /></div>}
+                    <div className="flex items-center">
+                        <Icon className={`h-7 w-7 mr-3 ${budget === value ? 'text-primary' : 'text-muted'}`}/>
+                        <div>
+                            <p className="font-semibold">{label}</p>
+                            <p className="text-xs text-muted">{description}</p>
+                        </div>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -131,7 +161,7 @@ const ItineraryForm: React.FC<ItineraryFormProps> = ({ onSubmit, isLoading }) =>
         <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex justify-center items-center bg-primary text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-primary-hover transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105"
+            className="w-full flex justify-center items-center bg-gradient-to-r from-primary to-accent text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
         >
             <RocketLaunchIcon className="h-6 w-6 mr-2" />
             Create My Adventure!

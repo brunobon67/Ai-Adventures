@@ -135,3 +135,72 @@ export const TechIcon: React.FC<IconProps> = ({className}) => (
         <path fillRule="evenodd" d="M11.25 2.25a.75.75 0 00-1.5 0v1.51a4.52 4.52 0 00-1.874.526l-1.06-1.06a.75.75 0 00-1.06 1.06l1.06 1.06a4.52 4.52 0 00-.527 1.874H4.75a.75.75 0 000 1.5h1.51a4.52 4.52 0 00.526 1.874l-1.06 1.06a.75.75 0 001.06 1.06l1.06-1.06a4.52 4.52 0 001.874.527v1.51a.75.75 0 001.5 0v-1.51a4.52 4.52 0 001.874-.526l1.06 1.06a.75.75 0 001.06-1.06l-1.06-1.06a4.52 4.52 0 00.527-1.874h1.51a.75.75 0 000-1.5h-1.51a4.52 4.52 0 00-.526-1.874l1.06-1.06a.75.75 0 00-1.06-1.06l-1.06 1.06a4.52 4.52 0 00-1.874-.527V2.25zM10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clipRule="evenodd" />
     </svg>
 );
+
+export const HashtagIcon: React.FC<IconProps> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 8.25h13.5m-13.5 7.5h13.5m-1.5-15l-3 15m-2.25-15l-3 15" />
+    </svg>
+);
+
+export const CheckCircleIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+  </svg>
+);
+
+export const CoffeeIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path d="M10 3a.75.75 0 01.75.75V5h-1.5V3.75A.75.75 0 0110 3zM8.5 6.5V5h3V6.5A2.5 2.5 0 019 9H8.5V6.5zM11.5 5H13a.5.5 0 01.5.5v1A2.5 2.5 0 0111 9h-.5V6.5a1 1 0 011-1.5z" />
+    <path fillRule="evenodd" d="M3 8.25A2.75 2.75 0 015.75 5.5h8.5A2.75 2.75 0 0117 8.25v2.27a4.75 4.75 0 01-1.551 3.545 3.25 3.25 0 01-2.9 1.185H6.701a3.25 3.25 0 01-2.9-1.185A4.75 4.75 0 012 10.52V8.25zm.75 2.27a3.25 3.25 0 001.051 2.454 1.75 1.75 0 001.549.646h6.3a1.75 1.75 0 001.55-.646A3.25 3.25 0 0015.25 10.52V8.25a1.25 1.25 0 00-1.25-1.25h-8.5A1.25 1.25 0 004 8.25v2.27z" clipRule="evenodd" />
+  </svg>
+);
+export const WalkIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M10 3a1 1 0 011 1v2.25c0 .414-.168.79-.44 1.06l-1.359 1.36a1 1 0 01-1.414-1.414l.87-.87a.25.25 0 00-.176-.424H9.5a1 1 0 01-1-1V4a1 1 0 011-1h.5z" clipRule="evenodd" />
+    <path d="M10 8.25a.75.75 0 01.75.75V15a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zM4.743 9.043a.75.75 0 10-1.06-1.06l-1.933 1.932a.75.75 0 000 1.06l1.22 1.22a.75.75 0 101.06-1.06l-.69-.691 1.082-1.082-.74-1.26z" />
+    <path d="M16.28 9.97a.75.75 0 01-1.06 0l-.74-1.261 1.082-1.082-.69.69a.75.75 0 01-1.06-1.06l1.22-1.22a.75.75 0 010 1.06l-1.932 1.933a.75.75 0 01-1.06 0z" />
+  </svg>
+);
+export const FireIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M15.312 5.232a.75.75 0 01.936.465l1.5 4.5a.75.75 0 01-1.476.492l-1.12-3.36-2.228 1.485a.75.75 0 01-.612 0l-2.5-1.667a.75.75 0 01-.06-1.118l3.75-5a.75.75 0 011.118-.06l-.28.42z" clipRule="evenodd" />
+    <path d="M2.5 9.333a4.5 4.5 0 118.518 2.443A3.75 3.75 0 016.25 15.5h-1.5a.75.75 0 010-1.5h1.5a2.25 2.25 0 10-2.14-3.23l.004-.002a.75.75 0 01.996-1.127 3 3 0 00-3.116-2.308z" />
+  </svg>
+);
+export const PiggyBankIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path d="M2.5 6A2.5 2.5 0 015 3.5h3.14a.75.75 0 01.62.37l1.09 1.816a.75.75 0 00.62.37h2.04a.75.75 0 010 1.5H11.5a.75.75 0 00-.62.37L9.79 9.14a.75.75 0 01-1.24 0l-.36-1.182a.75.75 0 00-.7-.458H5.625a.75.75 0 010-1.5h1.25a.75.75 0 00.7-.458L8.14 4.36a.75.75 0 01.62-.37H5A1 1 0 004 5v1z" />
+    <path d="M4 11.25A2.75 2.75 0 006.75 8.5h6.5A2.75 2.75 0 0116 11.25v2.27a4.75 4.75 0 01-1.551 3.545A3.25 3.25 0 0111.75 18.25h-3.5A3.25 3.25 0 015.05 17.065 4.75 4.75 0 013 13.52v-2.27z" />
+  </svg>
+);
+export const WalletIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path d="M2.5 4.5A2.5 2.5 0 015 2h10a2.5 2.5 0 012.5 2.5v2.5a.75.75 0 01-1.5 0v-2.5a1 1 0 00-1-1H5a1 1 0 00-1 1v11a1 1 0 001 1h10a1 1 0 001-1v-2a.75.75 0 011.5 0v2A2.5 2.5 0 0115 18H5A2.5 2.5 0 012.5 15.5v-11z" />
+    <path d="M14.75 8.5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5a.75.75 0 01.75-.75zM9.5 8a.5.5 0 000 1h3a.5.5 0 000-1h-3z" />
+  </svg>
+);
+export const SparklesIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M10 2.5a.75.75 0 01.75.75v1.25a.75.75 0 01-1.5 0V3.25a.75.75 0 01.75-.75zM7.5 5.66a.75.75 0 00-1.06 1.06l-.886.885a.75.75 0 001.06 1.061l.886-.885a.75.75 0 000-1.061zM13.621 6.72a.75.75 0 011.06 0l.885.885a.75.75 0 01-1.06 1.06l-.885-.885a.75.75 0 010-1.06zM17.25 10a.75.75 0 01-.75.75h-1.25a.75.75 0 010-1.5h1.25a.75.75 0 01.75.75zM14.434 14.384a.75.75 0 001.06-1.06l-.885-.885a.75.75 0 10-1.06 1.06l.885.885zM6.384 12.566a.75.75 0 010 1.06l-.885.885a.75.75 0 01-1.06-1.06l.885-.885a.75.75 0 011.06 0zM10 16.75a.75.75 0 01.75.75v1.25a.75.75 0 01-1.5 0v-1.25a.75.75 0 01.75-.75zM3.566 7.616a.75.75 0 00-1.06-1.06l-.885.885a.75.75 0 001.06 1.06l.885-.885z" clipRule="evenodd" />
+  </svg>
+);
+
+export const ClipboardIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a2.25 2.25 0 01-2.25 2.25h-1.5a2.25 2.25 0 01-2.25-2.25v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+  </svg>
+);
+
+export const PrinterIcon: React.FC<IconProps> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6 18.233m0-4.404a42.258 42.258 0 0010.56 0m0 0L18 18.233m-12-4.404s.678-1.681 2.648-3.206c1.97-.152 4.062-1.681 4.062-1.681s2.092 1.529 4.062 1.681c1.97 1.525 2.648 3.206 2.648 3.206M12 11.814a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+    </svg>
+);
+
+export const WandIcon: React.FC<IconProps> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.25M9.75 3.104c.238.19.478.41.706.654a2.25 2.25 0 003.088 0c.228-.244.468-.464.706-.654M9.75 3.104a2.25 2.25 0 00-3.088 0c-.228.244-.468.464-.706.654m6.176 9.152a2.25 2.25 0 01.659 1.591v5.714m0 0a2.25 2.25 0 01-2.25 2.25h-1.5a2.25 2.25 0 01-2.25-2.25v-5.714m0 0a2.25 2.25 0 01.659-1.591L9.75 8.25M15.75 12.75a2.25 2.25 0 00-3.088 0c-.228.244-.468.464-.706.654" />
+    </svg>
+);

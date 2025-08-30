@@ -13,8 +13,7 @@ export enum Budget {
 
 export interface ItineraryRequest {
   city: string;
-  startDate: string;
-  endDate: string;
+  numberOfDays: number;
   interests: string[];
   pace: Pace;
   budget: Budget;
@@ -30,7 +29,6 @@ export interface Activity {
 
 export interface DailyPlan {
   day: number;
-  date: string;
   theme: string;
   activities: Activity[];
   alternatives: string[];

@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Budget, Pace } from './types';
-import { ArchitectureIcon, ArtIcon, FamilyIcon, FoodIcon, HistoryIcon, LeafIcon, NightlifeIcon, RelaxationIcon, ShoppingBagIcon, TechIcon } from './components/icons';
+import { ArchitectureIcon, ArtIcon, CoffeeIcon, FamilyIcon, FireIcon, FoodIcon, HistoryIcon, LeafIcon, NightlifeIcon, PiggyBankIcon, RelaxationIcon, ShoppingBagIcon, SparklesIcon, TechIcon, WalkIcon, WalletIcon } from './components/icons';
 
 export const INTERESTS_OPTIONS: { label: string; icon: React.FC<{className?: string}> }[] = [
   { label: 'History & Culture', icon: HistoryIcon },
@@ -16,13 +17,13 @@ export const INTERESTS_OPTIONS: { label: string; icon: React.FC<{className?: str
 ];
 
 export const PACE_OPTIONS = [
-  { value: Pace.Relaxed, label: 'Relaxed', description: 'Fewer activities, more downtime.' },
-  { value: Pace.Moderate, label: 'Moderate', description: 'A good mix of activities and free time.' },
-  { value: Pace.Packed, label: 'Packed', description: 'See as much as possible, dawn till dusk.' },
+  { value: Pace.Relaxed, label: 'Relaxed', description: 'Fewer activities, more downtime.', icon: CoffeeIcon },
+  { value: Pace.Moderate, label: 'Moderate', description: 'A good mix of activities and free time.', icon: WalkIcon },
+  { value: Pace.Packed, label: 'Packed', description: 'See as much as possible, dawn till dusk.', icon: FireIcon },
 ];
 
 export const BUDGET_OPTIONS = [
-  { value: Budget.Budget, label: 'Budget', description: 'Hostels, street food, free attractions.' },
-  { value: Budget.MidRange, label: 'Mid-Range', description: 'Comfortable hotels, mix of dining.' },
-  { value: Budget.Luxury, label: 'Luxury', description: '5-star stays, fine dining, private tours.' },
+  { value: Budget.Budget, label: 'Budget', description: 'Hostels, street food, free attractions.', icon: PiggyBankIcon },
+  { value: Budget.MidRange, label: 'Mid-Range', description: 'Comfortable hotels, mix of dining.', icon: WalletIcon },
+  { value: Budget.Luxury, label: 'Luxury', description: '5-star stays, fine dining, private tours.', icon: SparklesIcon },
 ];
